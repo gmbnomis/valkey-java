@@ -27,6 +27,7 @@ import io.valkey.exceptions.JedisException;
 import io.valkey.util.SafeEncoder;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -476,7 +477,7 @@ public class PublishSubscribeCommandsTest extends JedisCommandsTestBase {
     };
     pubsub.unsubscribe();
   }
-
+  @Ignore("Disabled by https://github.com/valkey-io/valkey/pull/2078")
   @Test(expected = JedisException.class)
   public void handleClientOutputBufferLimitForSubscribeTooSlow() throws InterruptedException {
     final Jedis j = createJedis();
