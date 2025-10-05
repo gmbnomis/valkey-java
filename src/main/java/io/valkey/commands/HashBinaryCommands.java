@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import io.valkey.args.ExpiryOption;
+import io.valkey.params.HGetExParams;
+import io.valkey.params.HSetExParams;
 import io.valkey.params.ScanParams;
 import io.valkey.resps.ScanResult;
 
@@ -57,5 +60,37 @@ public interface HashBinaryCommands {
   ScanResult<byte[]> hscanNoValues(byte[] key, byte[] cursor, ScanParams params);
 
   long hstrlen(byte[] key, byte[] field);
+
+  long hsetex(byte[] key, HSetExParams params, byte[] field, byte[] value);
+
+  long hsetex(byte[] key, HSetExParams params, Map<byte[], byte[]> hash);
+
+  List<byte[]> hgetex(byte[] key, HGetExParams params, byte[]... fields);
+
+  List<Long> hexpire(byte[] key, long seconds, byte[]... fields);
+
+  List<Long> hexpire(byte[] key, long seconds, ExpiryOption condition, byte[]... fields);
+
+  List<Long> hpexpire(byte[] key, long milliseconds, byte[]... fields);
+
+  List<Long> hpexpire(byte[] key, long milliseconds, ExpiryOption condition, byte[]... fields);
+
+  List<Long> hexpireAt(byte[] key, long unixTimeSeconds, byte[]... fields);
+
+  List<Long> hexpireAt(byte[] key, long unixTimeSeconds, ExpiryOption condition, byte[]... fields);
+
+  List<Long> hpexpireAt(byte[] key, long unixTimeMillis, byte[]... fields);
+
+  List<Long> hpexpireAt(byte[] key, long unixTimeMillis, ExpiryOption condition, byte[]... fields);
+
+  List<Long> hexpireTime(byte[] key, byte[]... fields);
+
+  List<Long> hpexpireTime(byte[] key, byte[]... fields);
+
+  List<Long> httl(byte[] key, byte[]... fields);
+
+  List<Long> hpttl(byte[] key, byte[]... fields);
+
+  List<Long> hpersist(byte[] key, byte[]... fields);
 
 }
