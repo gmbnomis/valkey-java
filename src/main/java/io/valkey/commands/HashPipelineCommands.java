@@ -6,6 +6,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import io.valkey.Response;
+import io.valkey.args.ExpiryOption;
+import io.valkey.params.HGetExParams;
+import io.valkey.params.HSetExParams;
 import io.valkey.params.ScanParams;
 import io.valkey.resps.ScanResult;
 
@@ -58,4 +61,36 @@ public interface HashPipelineCommands {
   Response<ScanResult<String>> hscanNoValues(String key, String cursor, ScanParams params);
 
   Response<Long> hstrlen(String key, String field);
+
+  Response<Long> hsetex(String key, HSetExParams params, String field, String value);
+
+  Response<Long> hsetex(String key, HSetExParams params, Map<String, String> hash);
+
+  Response<List<String>> hgetex(String key, HGetExParams params, String... fields);
+
+  Response<List<Long>> hexpire(String key, long seconds, String... fields);
+
+  Response<List<Long>> hexpire(String key, long seconds, ExpiryOption condition, String... fields);
+
+  Response<List<Long>> hpexpire(String key, long milliseconds, String... fields);
+
+  Response<List<Long>> hpexpire(String key, long milliseconds, ExpiryOption condition, String... fields);
+
+  Response<List<Long>> hexpireAt(String key, long unixTimeSeconds, String... fields);
+
+  Response<List<Long>> hexpireAt(String key, long unixTimeSeconds, ExpiryOption condition, String... fields);
+
+  Response<List<Long>> hpexpireAt(String key, long unixTimeMillis, String... fields);
+
+  Response<List<Long>> hpexpireAt(String key, long unixTimeMillis, ExpiryOption condition, String... fields);
+
+  Response<List<Long>> hexpireTime(String key, String... fields);
+
+  Response<List<Long>> hpexpireTime(String key, String... fields);
+
+  Response<List<Long>> httl(String key, String... fields);
+
+  Response<List<Long>> hpttl(String key, String... fields);
+
+  Response<List<Long>> hpersist(String key, String... fields);
 }

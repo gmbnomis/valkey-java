@@ -24,6 +24,8 @@ import io.valkey.params.GeoRadiusParam;
 import io.valkey.params.GeoRadiusStoreParam;
 import io.valkey.params.GeoSearchParam;
 import io.valkey.params.GetExParams;
+import io.valkey.params.HGetExParams;
+import io.valkey.params.HSetExParams;
 import io.valkey.params.LCSParams;
 import io.valkey.params.LPosParams;
 import io.valkey.params.MigrateParams;
@@ -798,6 +800,86 @@ public abstract class PipeliningBase
   @Override
   public Response<Long> hstrlen(String key, String field) {
     return appendCommand(commandObjects.hstrlen(key, field));
+  }
+
+  @Override
+  public Response<Long> hsetex(String key, HSetExParams params, String field, String value) {
+    return appendCommand(commandObjects.hsetex(key, params, field, value));
+  }
+
+  @Override
+  public Response<Long> hsetex(String key, HSetExParams params, Map<String, String> hash) {
+    return appendCommand(commandObjects.hsetex(key, params, hash));
+  }
+
+  @Override
+  public Response<List<String>> hgetex(String key, HGetExParams params, String... fields) {
+    return appendCommand(commandObjects.hgetex(key, params, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpire(String key, long seconds, String... fields) {
+    return appendCommand(commandObjects.hexpire(key, seconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpire(String key, long seconds, ExpiryOption condition, String... fields) {
+    return appendCommand(commandObjects.hexpire(key, seconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpire(String key, long milliseconds, String... fields) {
+    return appendCommand(commandObjects.hpexpire(key, milliseconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpire(String key, long milliseconds, ExpiryOption condition, String... fields) {
+    return appendCommand(commandObjects.hpexpire(key, milliseconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireAt(String key, long unixTimeSeconds, String... fields) {
+    return appendCommand(commandObjects.hexpireAt(key, unixTimeSeconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireAt(String key, long unixTimeSeconds, ExpiryOption condition, String... fields) {
+    return appendCommand(commandObjects.hexpireAt(key, unixTimeSeconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireAt(String key, long unixTimeMillis, String... fields) {
+    return appendCommand(commandObjects.hpexpireAt(key, unixTimeMillis, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireAt(String key, long unixTimeMillis, ExpiryOption condition, String... fields) {
+    return appendCommand(commandObjects.hpexpireAt(key, unixTimeMillis, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireTime(String key, String... fields) {
+    return appendCommand(commandObjects.hexpireTime(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireTime(String key, String... fields) {
+    return appendCommand(commandObjects.hpexpireTime(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> httl(String key, String... fields) {
+    return appendCommand(commandObjects.httl(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpttl(String key, String... fields) {
+    return appendCommand(commandObjects.hpttl(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpersist(String key, String... fields) {
+    return appendCommand(commandObjects.hpersist(key, fields));
   }
 
   @Override
@@ -2079,6 +2161,86 @@ public abstract class PipeliningBase
   @Override
   public Response<Long> hstrlen(byte[] key, byte[] field) {
     return appendCommand(commandObjects.hstrlen(key, field));
+  }
+
+  @Override
+  public Response<Long> hsetex(byte[] key, HSetExParams params, byte[] field, byte[] value) {
+    return appendCommand(commandObjects.hsetex(key, params, field, value));
+  }
+
+  @Override
+  public Response<Long> hsetex(byte[] key, HSetExParams params, Map<byte[], byte[]> hash) {
+    return appendCommand(commandObjects.hsetex(key, params, hash));
+  }
+
+  @Override
+  public Response<List<byte[]>> hgetex(byte[] key, HGetExParams params, byte[]... fields) {
+    return appendCommand(commandObjects.hgetex(key, params, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpire(byte[] key, long seconds, byte[]... fields) {
+    return appendCommand(commandObjects.hexpire(key, seconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpire(byte[] key, long seconds, ExpiryOption condition, byte[]... fields) {
+    return appendCommand(commandObjects.hexpire(key, seconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpire(byte[] key, long milliseconds, byte[]... fields) {
+    return appendCommand(commandObjects.hpexpire(key, milliseconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpire(byte[] key, long milliseconds, ExpiryOption condition, byte[]... fields) {
+    return appendCommand(commandObjects.hpexpire(key, milliseconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireAt(byte[] key, long unixTimeSeconds, byte[]... fields) {
+    return appendCommand(commandObjects.hexpireAt(key, unixTimeSeconds, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireAt(byte[] key, long unixTimeSeconds, ExpiryOption condition, byte[]... fields) {
+    return appendCommand(commandObjects.hexpireAt(key, unixTimeSeconds, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireAt(byte[] key, long unixTimeMillis, byte[]... fields) {
+    return appendCommand(commandObjects.hpexpireAt(key, unixTimeMillis, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireAt(byte[] key, long unixTimeMillis, ExpiryOption condition, byte[]... fields) {
+    return appendCommand(commandObjects.hpexpireAt(key, unixTimeMillis, condition, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hexpireTime(byte[] key, byte[]... fields) {
+    return appendCommand(commandObjects.hexpireTime(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpexpireTime(byte[] key, byte[]... fields) {
+    return appendCommand(commandObjects.hpexpireTime(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> httl(byte[] key, byte[]... fields) {
+    return appendCommand(commandObjects.httl(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpttl(byte[] key, byte[]... fields) {
+    return appendCommand(commandObjects.hpttl(key, fields));
+  }
+
+  @Override
+  public Response<List<Long>> hpersist(byte[] key, byte[]... fields) {
+    return appendCommand(commandObjects.hpersist(key, fields));
   }
 
   @Override
